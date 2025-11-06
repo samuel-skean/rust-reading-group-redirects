@@ -4,9 +4,7 @@
   "name": "time-based-http-redirector",
   "main": "src/index.ts",
   "compatibility_date": "2025-11-06",
-  // "compatibility_flags": [
-  //   "nodejs_compat"
-  // ],
+  "compatibility_flags": ["nodejs_compat"],
   // "vars": {
   //   "MY_VAR": "my-variable"
   // },
@@ -22,13 +20,14 @@
   //     "bucket_name": "my-bucket"
   //   }
   // ],
-  // "d1_databases": [
-  //   {
-  //     "binding": "MY_DB",
-  //     "database_name": "my-database",
-  //     "database_id": ""
-  //   }
-  // ],
+  "d1_databases": [
+    {
+      "binding": "db",
+      "database_name": "rust-reading-group-nfc-redirects-db",
+      "database_id": "dc90cd88-20e0-47b7-b500-3ff8f03dcdde",
+      "migrations_dir": "./drizzle/"
+    }
+  ]
   // "ai": {
   //   "binding": "AI"
   // },

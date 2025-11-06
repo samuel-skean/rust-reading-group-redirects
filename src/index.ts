@@ -1,9 +1,66 @@
+import assert from "node:assert";
+import { desc } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/d1";
 import { Hono } from "hono";
+import * as schema from "#/src/db/schema";
+import type { Env } from "./env";
+import { ScheduleValidator } from "./types-and-validators";
+import { getCurrentUrlFromSchedule } from "./utils/getCurrentUrlFromSchedule";
 
-const app = new Hono();
+const app = new Hono<{ Bindings: Env }>();
 
-app.get("/", (c) => {
-  return c.redirect("https://rust-unofficial.github.io/too-many-lists/");
+app.get("/schedule", async (c) => {
+  const db = drizzle(c.env.db);
+
+  const result = await db
+    .select()
+    .from(schema.schedules)
+    .orderBy(desc(schema.schedules.id))
+    .limit(1);
+  // TODO: Fix!! This produces JSON with escapes in it because the escapes are part of how its stored in the database (I think).
+  return c.json(result);
+});
+
+app.put("/schedule", async (c) => {
+  const db = drizzle(c.env.db);
+
+  const parseResult = ScheduleValidator.safeParse(await c.req.json());
+
+  if (parseResult.error) {
+    return c.json(JSON.parse(parseResult.error.message), 400);
+  }
+
+  const result = await db
+    .insert(schema.schedules)
+    .values([{ jsonData: await (await c.req.blob()).text() }])
+    .returning();
+  // TODO: Fix!! This produces JSON with escapes in it because the escapes are part of how its stored in the database (I think).
+  return c.json(result[0].jsonData);
+});
+
+app.get("/redirect", async (c) => {
+  const db = drizzle(c.env.db);
+
+  const scheduleParseResult = ScheduleValidator.safeParse(
+    JSON.parse(
+      (
+        await db
+          .select()
+          .from(schema.schedules)
+          .orderBy(desc(schema.schedules.id))
+      )[0].jsonData,
+    ),
+  );
+
+  if (scheduleParseResult.error) {
+    c.json(JSON.parse(scheduleParseResult.error.message), 400);
+  }
+
+  if (scheduleParseResult.success) {
+    return c.redirect(getCurrentUrlFromSchedule(scheduleParseResult.data));
+  }
+
+  assert(false);
 });
 
 export default app;
