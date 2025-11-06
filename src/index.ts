@@ -3,12 +3,11 @@ import { desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 import { Hono } from "hono";
 import * as schema from "#/src/db/schema";
-import type { Env } from "./env";
+import { DEFAULT_URL } from "./constants";
 import { ScheduleValidator } from "./types-and-validators";
 import { getCurrentUrlFromSchedule } from "./utils/getCurrentUrlFromSchedule";
-import { DEFAULT_URL } from "./constants";
 
-const app = new Hono<{ Bindings: Env }>();
+const app = new Hono<{ Bindings: CloudflareBindings }>();
 
 app.get("/schedule", async (c) => {
   const db = drizzle(c.env.db);
@@ -23,7 +22,7 @@ app.get("/schedule", async (c) => {
     return c.redirect(DEFAULT_URL);
   }
   // TODO: Fix!! This produces JSON with escapes in it because the escapes are part of how its stored in the database (I think).
-  return c.json(result[0]);
+  return c.json(result[0].jsonData);
 });
 
 app.put("/schedule", async (c) => {
