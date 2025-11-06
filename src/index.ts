@@ -6,6 +6,7 @@ import * as schema from "#/src/db/schema";
 import type { Env } from "./env";
 import { ScheduleValidator } from "./types-and-validators";
 import { getCurrentUrlFromSchedule } from "./utils/getCurrentUrlFromSchedule";
+import { DEFAULT_URL } from "./constants";
 
 const app = new Hono<{ Bindings: Env }>();
 
@@ -17,8 +18,12 @@ app.get("/schedule", async (c) => {
     .from(schema.schedules)
     .orderBy(desc(schema.schedules.id))
     .limit(1);
+
+  if (result.length < 1) {
+    return c.redirect(DEFAULT_URL);
+  }
   // TODO: Fix!! This produces JSON with escapes in it because the escapes are part of how its stored in the database (I think).
-  return c.json(result);
+  return c.json(result[0]);
 });
 
 app.put("/schedule", async (c) => {
@@ -41,15 +46,16 @@ app.put("/schedule", async (c) => {
 app.get("/redirect", async (c) => {
   const db = drizzle(c.env.db);
 
+  const currentSchedule = (
+    await db.select().from(schema.schedules).orderBy(desc(schema.schedules.id))
+  ).at(0);
+
+  if (!currentSchedule) {
+    return c.redirect(DEFAULT_URL);
+  }
+
   const scheduleParseResult = ScheduleValidator.safeParse(
-    JSON.parse(
-      (
-        await db
-          .select()
-          .from(schema.schedules)
-          .orderBy(desc(schema.schedules.id))
-      )[0].jsonData,
-    ),
+    JSON.parse(currentSchedule.jsonData),
   );
 
   if (scheduleParseResult.error) {

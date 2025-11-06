@@ -22,9 +22,5 @@ export const getCurrentUrlFromSchedule = (
   });
   assert(currentlyActiveRanges.length <= 1);
 
-  if (currentlyActiveRanges.length === 1) {
-    return currentlyActiveRanges[0].value;
-  } else {
-    return DEFAULT_URL;
-  }
+  return currentlyActiveRanges[0]?.value ?? DEFAULT_URL;
 };
