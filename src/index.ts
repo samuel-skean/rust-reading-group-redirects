@@ -59,11 +59,9 @@ app.get("/redirect", async (c) => {
     c.json(JSON.parse(scheduleParseResult.error.message), 400);
   }
 
-  if (scheduleParseResult.success) {
-    return c.redirect(getCurrentUrlFromSchedule(scheduleParseResult.data));
-  }
+  assert(scheduleParseResult.success);
 
-  assert(false);
+  return c.redirect(getCurrentUrlFromSchedule(scheduleParseResult.data));
 });
 
 export default app;
