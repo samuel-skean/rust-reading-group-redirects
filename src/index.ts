@@ -24,21 +24,21 @@ app.get("/schedule", async (c) => {
   return c.json(JSON.parse(result[0].jsonData));
 });
 
-app.put("/schedule", async (c) => {
-  const db = drizzle(c.env.db);
+// app.put("/schedule", async (c) => {
+//   const db = drizzle(c.env.db);
 
-  const parseResult = ScheduleValidator.safeParse(await c.req.json());
+//   const parseResult = ScheduleValidator.safeParse(await c.req.json());
 
-  if (parseResult.error) {
-    return c.json(JSON.parse(parseResult.error.message), 400);
-  }
+//   if (parseResult.error) {
+//     return c.json(JSON.parse(parseResult.error.message), 400);
+//   }
 
-  const result = await db
-    .insert(schema.schedules)
-    .values([{ jsonData: await (await c.req.blob()).text() }])
-    .returning();
-  return c.json(JSON.parse(result[0].jsonData));
-});
+//   const result = await db
+//     .insert(schema.schedules)
+//     .values([{ jsonData: await (await c.req.blob()).text() }])
+//     .returning();
+//   return c.json(JSON.parse(result[0].jsonData));
+// });
 
 app.get("/redirect", async (c) => {
   const db = drizzle(c.env.db);
