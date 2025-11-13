@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   // TODO: Fix the name so wrangler doesn't complain.
-  "name": "rust-reading-group-nfc-redirects",
+  "name": "rust-reading-group",
   "main": "src/index.ts",
   "compatibility_date": "2025-11-06",
   "compatibility_flags": ["nodejs_compat"],
@@ -25,9 +25,9 @@
       "binding": "db",
       "database_name": "rust-reading-group-nfc-redirects-db",
       "database_id": "dc90cd88-20e0-47b7-b500-3ff8f03dcdde",
-      "migrations_dir": "./drizzle/"
-    }
-  ]
+      "migrations_dir": "./drizzle/",
+    },
+  ],
   // "ai": {
   //   "binding": "AI"
   // },
