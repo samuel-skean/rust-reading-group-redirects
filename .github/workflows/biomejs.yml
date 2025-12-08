@@ -4,9 +4,8 @@ on:
   push:
   pull_request:
 
-
 jobs:
-  quality:
+  linter:
     runs-on: ubuntu-latest
     permissions:
       contents: read
