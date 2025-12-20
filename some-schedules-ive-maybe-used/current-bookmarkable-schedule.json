@@ -21,7 +21,12 @@
   },
   {
     "start": 1764883800001,
-    "end": 1766205240000,
+    "end": 1766181105000,
     "value": "https://rust-unofficial.github.io/too-many-lists/second-peek.html"
+  },
+  {
+    "start": 1766181105001,
+    "end": 1766525443000,
+    "value": "https://rust-unofficial.github.io/too-many-lists/second-iter.html"
   }
 ]
