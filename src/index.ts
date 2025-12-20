@@ -1,4 +1,3 @@
-import assert from "node:assert";
 import { desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 import { Hono } from "hono";
