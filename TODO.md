@@ -1,5 +1,0 @@
- - [ ] There's some redundant logic for returning the DEFAULT_URL, specifically in the case that the database is empty.
- - [ ] Make it possible to deploy twice, with different databases: one to be bookmarked, one to be put on nfc tags.
-- [ ] Auth.
-- [ ] Client app? Apple Shortcuts?
-- [ ] Rewrite it in Rust? lol
