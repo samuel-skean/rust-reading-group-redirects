@@ -25,8 +25,8 @@
       "binding": "db",
       "database_name": "rust-reading-group-nfc-redirects-db",
       "database_id": "dc90cd88-20e0-47b7-b500-3ff8f03dcdde",
-      "migrations_dir": "./drizzle/",
-    },
+      "migrations_dir": "./drizzle/"
+    }
   ],
   // "ai": {
   //   "binding": "AI"
@@ -39,12 +39,12 @@
       "enabled": true,
       "head_sampling_rate": 1,
       "persist": true,
-      "invocation_logs": true,
+      "invocation_logs": true
     },
     "traces": {
       "enabled": false,
       "persist": true,
-      "head_sampling_rate": 1,
-    },
-  },
+      "head_sampling_rate": 1
+    }
+  }
 }
