@@ -51,17 +51,11 @@ app.get("/redirect", async (c) => {
     return c.redirect(DEFAULT_URL);
   }
 
-  const scheduleParseResult = ScheduleValidator.safeParse(
+  const scheduleParse = ScheduleValidator.parse(
     JSON.parse(currentSchedule.jsonData),
   );
 
-  if (scheduleParseResult.error) {
-    c.json(JSON.parse(scheduleParseResult.error.message), 400);
-  }
-
-  assert(scheduleParseResult.success);
-
-  return c.redirect(getCurrentUrlFromSchedule(scheduleParseResult.data));
+  return c.redirect(getCurrentUrlFromSchedule(scheduleParse));
 });
 
 export default app;
