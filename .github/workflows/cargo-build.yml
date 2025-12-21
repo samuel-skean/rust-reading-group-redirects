@@ -1,9 +1,9 @@
-name: test suite
+name: Build Rust Code
 on: [push, pull_request]
 
 jobs:
   test:
-    name: cargo test
+    name: cargo build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
