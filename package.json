@@ -1,0 +1,6 @@
+{
+  "name": "redirector",
+  "devDependencies": {
+    "@biomejs/biome": "2.3.10"
+  }
+}
