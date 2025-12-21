@@ -1,11 +1,9 @@
-name: Linter
+name: Biome
 
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
-  linter:
+  biome:
     runs-on: ubuntu-latest
     permissions:
       contents: read

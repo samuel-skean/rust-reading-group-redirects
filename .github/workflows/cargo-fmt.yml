@@ -2,7 +2,7 @@ name: Check Formatting of Rust Code
 on: [push, pull_request]
 
 jobs:
-  test:
+  check-formatting:
     name: cargo fmt --check
     runs-on: ubuntu-latest
     steps:

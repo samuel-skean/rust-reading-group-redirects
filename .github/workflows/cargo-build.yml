@@ -2,7 +2,7 @@ name: Build Rust Code
 on: [push, pull_request]
 
 jobs:
-  test:
+  build:
     name: cargo build
     runs-on: ubuntu-latest
     steps:
