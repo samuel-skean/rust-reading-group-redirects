@@ -1,11 +1,12 @@
-name: Build Rust Code
+name: Build and Test Rust Code
 on: [push, pull_request]
 
 jobs:
-  build:
-    name: cargo build
+  build-and-test:
+    name: Build and Test Rust Code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
       - run: cargo build --all-features
+      - run: cargo test --all-features
