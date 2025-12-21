@@ -9,7 +9,7 @@ fn create_environment() -> Environment<'static> {
 #[axum::debug_handler]
 pub async fn temp_dynamic_handler() -> (StatusCode, Html<String>) {
     let env = create_environment();
-    let Ok(template) = env.get_template("temp-dynamic.html.j2") else {
+    let Ok(template) = env.get_template("temp-dynamic.html.jinja2") else {
         return (
             StatusCode::INTERNAL_SERVER_ERROR,
             Html(String::from("Internal error getting template")),
