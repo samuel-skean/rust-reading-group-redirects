@@ -9,13 +9,13 @@ fn create_environment() -> Environment<'static> {
 #[axum::debug_handler]
 pub async fn temp_dynamic_handler() -> (StatusCode, Html<String>) {
     let env = create_environment();
-    let Ok(template) = env.get_template("temp-dynamic.html.minijinja") else {
+    let Ok(template) = env.get_template("temp-dynamic.html.j2") else {
         return (
             StatusCode::INTERNAL_SERVER_ERROR,
             Html(String::from("Internal error getting template")),
         );
     };
-    let Ok(rendered) = template.render(context!(name => "Jimmy")) else {
+    let Ok(rendered) = template.render(context!(name => "<h1>Jimmy</h1>")) else {
         return (
             StatusCode::INTERNAL_SERVER_ERROR,
             Html(String::from("Internal error rendering template")),
