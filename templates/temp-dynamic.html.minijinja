@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Redirector</title>
+    </head>
+    <body>
+        <p>Hi, {{ name }}.</p>
+    </body>
+</html>

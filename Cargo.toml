@@ -5,6 +5,6 @@ edition = "2024"
 
 [dependencies]
 axum = { version = "0.8.8", features = ["macros"] }
-minijinja = "2.14.0"
+minijinja = { version = "2.14.0", features = ["loader"] }
 tokio = { version = "1.48.0", features = ["full"] }
 tower-http = { version = "0.6.8", features = ["fs"] }
