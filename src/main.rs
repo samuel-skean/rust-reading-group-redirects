@@ -3,6 +3,7 @@ mod frontend;
 use axum::{Router, response::Redirect, routing::get};
 use tower_http::{services::ServeDir, trace::TraceLayer};
 
+static LISTEN_ADDR: &str = "0.0.0.0:3000";
 #[axum::debug_handler]
 async fn redirect_handler() -> Redirect {
     Redirect::temporary("http://example.com")
@@ -17,9 +18,11 @@ async fn main() {
         .layer(TraceLayer::new_for_http())
         .fallback_service(ServeDir::new("assets"));
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
+    let listener = tokio::net::TcpListener::bind(LISTEN_ADDR)
         .await
         .expect("Failed to bind");
+    // TODO: Make this print a printable link.
+    println!("Listening on {LISTEN_ADDR}.");
     axum::serve(listener, app)
         .await
         .expect("Failed to initialize application");
