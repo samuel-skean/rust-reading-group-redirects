@@ -28,5 +28,15 @@
     "start": 1766181105001,
     "end": 1766525443000,
     "value": "https://rust-unofficial.github.io/too-many-lists/second-iter.html"
+  },
+  {
+    "start": 1766525443001,
+    "end": 1766784600000,
+    "value": "https://rust-unofficial.github.io/too-many-lists/second-iter-mut.html"
+  },
+  {
+    "start": 1766784600001,
+    "end": 1767047400000,
+    "value": "https://rust-unofficial.github.io/too-many-lists/second-iter-mut.html"
   }
 ]
