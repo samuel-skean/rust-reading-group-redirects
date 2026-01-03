@@ -43,5 +43,10 @@
     "start": 1767043820001,
     "end": 1767389400000,
     "value": "https://rust-unofficial.github.io/too-many-lists/third-basics.html"
+  },
+  {
+    "start": 1767389400001,
+    "end": 1767738600000,
+    "value": "https://rust-unofficial.github.io/too-many-lists/third-basics.html#:~:text=Now%20that%20we%20have%20tail%2C%20we%20should%20probably%20provide%20head%2C%20which%20returns%20a%20reference%20to%20the%20first%20element%2E%20That%27s%20just%20peek%20from%20the%20mutable%20list"
   }
 ]
