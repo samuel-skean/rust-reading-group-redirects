@@ -1,12 +1,20 @@
 mod frontend;
 
 use axum::{Router, response::Redirect, routing::get};
+use rusqlite::{Connection, Result};
 use tower_http::{services::ServeDir, trace::TraceLayer};
 
 static LISTEN_ADDR: &str = "0.0.0.0:3000";
+
 #[axum::debug_handler]
 async fn redirect_handler() -> Redirect {
-    Redirect::temporary("http://example.com")
+    let conn = Connection::open("test.db").expect("Failed to open database");
+    let mut stmt = conn
+        .prepare("SELECT URL FROM Redirect_Schedule WHERE Hour LIKE 23;")
+        .unwrap();
+    let mut link = stmt.query_row([], |row| Ok(row.get::<_, String>(0)?));
+
+    Redirect::temporary(link.unwrap().as_str())
 }
 
 #[tokio::main]
