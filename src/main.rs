@@ -15,6 +15,10 @@ async fn main() {
     let app = Router::new()
         .route("/redirect", get(redirect_handler))
         .route("/temp-dynamic", get(frontend::temp_dynamic_handler))
+        .route(
+            "/add-bookmark-event",
+            get(frontend::add_bookmark_event::add_bookmark_event),
+        )
         .layer(TraceLayer::new_for_http())
         .fallback_service(ServeDir::new("assets"));
 

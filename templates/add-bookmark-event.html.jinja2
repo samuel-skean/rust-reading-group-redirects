@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Add Bookmark Event</title>
+    </head>
+    <body>
+        <h1>Add Bookmark Event</h1>
+        <p>Add a different time-based rule for what the event should direct you to.</p>
+        <form>
+            <!-- TODONOW(samuel-skean): Make these time+date controls.-->
+            <label for="start-datetime">Start Time</label>
+            <input className="time-input" id="start-datetime" type="datetime-local" value="{{ defaultStartDateTime }}" />
+
+            <label for="end-datetime">End Time</label>
+            <input className="time-input" id="end-datetime" type="datetime-local" value="{{ defaultEndDateTime }}" />
+            <label for="target-input">Target Input</label>
+            <input className="link-input" id="target-input" type="url" value="{{ defaultTarget }}"></input>
+            <button action="submit">Update Event</button>
+        </form>
+    </body>
+</html>

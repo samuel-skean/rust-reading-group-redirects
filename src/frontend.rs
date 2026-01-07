@@ -1,3 +1,5 @@
+pub mod add_bookmark_event;
+
 use std::sync::LazyLock;
 
 use axum::{extract::Query, http::StatusCode, response::Html};
