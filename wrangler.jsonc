@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   // TODO: Fix the name so wrangler doesn't complain.
-  "name": "rust-reading-group",
+  "name": "rust-reading-group-nfc-redirects",
   "main": "src/index.ts",
   "compatibility_date": "2025-11-06",
   "compatibility_flags": ["nodejs_compat"],
